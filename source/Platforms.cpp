@@ -12,7 +12,7 @@ Platform::Platform(f32 x, f32 y, f32 z, f32 w, f32 h, f32 d, GXTexObj tex) {
 	this->h = h;
 	this->d = d;
 	this->tex = tex;
-	this->bouncy = true;
+	this->bouncy = false;
 }
 
 void Platform::Update() {
@@ -42,78 +42,21 @@ GX_InvalidateTexAll();
 	f32 width, height, depth;
 	width = this->w / 2.0f;
 	height = this->h / 2.0f;
-	depth = this->d / 2.0f;
+	depth = 0;
 	
-	GX_Begin(GX_QUADS, GX_VTXFMT0, 20);
-		// Top
-		GX_Position3f32(-width, height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(128.0f/512.0f,0);
-		GX_Position3f32(width, height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(255.0f/512.0f, 0.0f);
-		GX_Position3f32(width, height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(255.0f/512.0f, 127.0f/512.0f);
+	GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
 		GX_Position3f32(-width, height, depth);
 		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(128.0f/512.0f, 127.0f/512.0f);
-		
-		// Front
-		GX_Position3f32(-width, height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(128.0f/512.0f,128.0f/512.0f);
+		GX_TexCoord2f32(0, 0);
 		GX_Position3f32(width, height, depth);
 		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(255.0f/512.0f, 128.0f/512.0f);
+		GX_TexCoord2f32(1, 0);
 		GX_Position3f32(width, -height, depth);
 		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(255.0f/512.0f, 255.0f/512.0f);
+		GX_TexCoord2f32(1, 1);
 		GX_Position3f32(-width, -height, depth);
 		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(128.0f/512.0f, 255.0f/512.0f);
-		
-		// Left Side
-		GX_Position3f32(-width, height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(0,128/512.0f);
-		GX_Position3f32(-width, height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(127/512.0f, 128/512.0f);
-		GX_Position3f32(-width, -height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(127/512.0f, 255/512.0f);
-		GX_Position3f32(-width, -height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(0, 255/512.0f);
-		
-		// Right Side
-		GX_Position3f32(width, height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(0,128/512.0f);
-		GX_Position3f32(width, height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(127/512.0f, 128/512.0f);
-		GX_Position3f32(width, -height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(127/512.0f, 255/512.0f);
-		GX_Position3f32(width, -height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(0, 255/512.0f);
-		
-		// botTom
-		GX_Position3f32(-width, -height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(128.0f/512.0f,256.0f/512.0f);
-		GX_Position3f32(width, -height, -depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(255.0f/512.0f, 256.0f/512.0f);
-		GX_Position3f32(width, -height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(255.0f/512.0f, 383.0f/512.0f);
-		GX_Position3f32(-width, -height, depth);
-		GX_Color4u8(255, 255, 255, 255);
-		GX_TexCoord2f32(128.0f/512.0f, 383.0f/512.0f);
+		GX_TexCoord2f32(0, 1);
 	GX_End();
 }
 

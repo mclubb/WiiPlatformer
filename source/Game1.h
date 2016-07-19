@@ -25,7 +25,7 @@ class Game1 : public Game {
 	private:
 		Camera * camera;
 		std::vector<GXTexObj> textures;
-		//std::vector<Platform*> platforms;
+		std::vector<Platform*> platforms;
 
 
 	protected:
