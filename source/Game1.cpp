@@ -5,22 +5,7 @@ Game1::Game1() {
 }
 
 void Game1::Initialize() {
-	GX_ClearVtxDesc();
-    	GX_SetVtxDesc(GX_VA_POS, GX_DIRECT);
-    	GX_SetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-	GX_SetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
-    	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
-	GX_SetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
-	
-	GX_SetNumChans(1);
-	GX_SetNumTexGens(1);
-	GX_SetTevOrder (GX_TEVSTAGE0, GX_TEXCOORD0,GX_TEXMAP0, GX_COLOR0A0);
-        GX_SetTevOp (GX_TEVSTAGE0, GX_MODULATE);        
-        GX_SetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
-
-	camera = new Camera( Game::gxrmode, (guVector){0, 2, -5}, (guVector){0,1,0}, (guVector){0,2,0});
+	camera = new Camera( Game::gxrmode, (guVector){3, 2, 5}, (guVector){0,1,0}, (guVector){3,2,0});
 }
 
 void Game1::LoadContent() {
@@ -42,6 +27,8 @@ void Game1::LoadContent() {
 	platforms.push_back(new Platform(3, 0, 0, 1, 1, 0, textures[1]));
 	platforms.push_back(new Platform(4, 0, 0, 1, 1, 0, textures[1]));
 	platforms.push_back(new Platform(5, 0, 0, 1, 1, 0, textures[1]));
+	platforms.push_back(new Platform(6, 0, 0, 1, 1, 0, textures[1]));
+	platforms.push_back(new Platform(7, 0, 0, 1, 1, 0, textures[1]));
 }
 
 void Game1::Update() {
@@ -70,7 +57,7 @@ void Game1::Draw() {
 void Game1::DrawCube(Mtx44 view) {
 	Mtx44 model, modelview;
 	guMtxIdentity(model);
-	guMtxTransApply(model, model, 0,  0, 0);
+	guMtxTransApply(model, model, 0,  2, 0);
 	guMtxConcat(model, view, modelview);
 	GX_LoadPosMtxImm(modelview, GX_PNMTX0);
 	GX_LoadTexObj(&textures[0], GX_TEXMAP0);
@@ -79,7 +66,7 @@ void Game1::DrawCube(Mtx44 view) {
 
 	width = 30.0f;
 	height = 12.5f;
-	depth = 25.0f;
+	depth = -25.0f;
 	GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
 		GX_Position3f32(-width, -height, depth);
 		GX_Color4u8(255, 255, 255, 255);
