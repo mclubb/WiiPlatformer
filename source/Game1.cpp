@@ -57,7 +57,7 @@ void Game1::Draw() {
 void Game1::DrawCube(Mtx44 view) {
 	Mtx44 model, modelview;
 	guMtxIdentity(model);
-	guMtxTransApply(model, model, 0,  2, 0);
+	guMtxTransApply(model, model, 4,  5, -45);
 	guMtxConcat(model, view, modelview);
 	GX_LoadPosMtxImm(modelview, GX_PNMTX0);
 	GX_LoadTexObj(&textures[0], GX_TEXMAP0);
@@ -65,8 +65,8 @@ void Game1::DrawCube(Mtx44 view) {
 	float width, height, depth;
 
 	width = 30.0f;
-	height = 12.5f;
-	depth = -25.0f;
+	height = 18.5f;
+	depth = 0;
 	GX_Begin(GX_QUADS, GX_VTXFMT0, 4);
 		GX_Position3f32(-width, -height, depth);
 		GX_Color4u8(255, 255, 255, 255);
