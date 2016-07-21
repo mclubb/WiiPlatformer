@@ -10,6 +10,7 @@
 #include "Platforms.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "SceneObject.h"
 
 class Game1 : public Game {
 	public:
@@ -26,6 +27,7 @@ class Game1 : public Game {
 		Camera * camera;
 		std::vector<GXTexObj> textures;
 		std::vector<Platform*> platforms;
+		std::vector<SceneObject*> sceneObjects;
 
 
 	protected:

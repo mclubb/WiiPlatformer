@@ -15,11 +15,28 @@ void Game1::LoadContent() {
 
 	GXTexObj _background;
 	GXTexObj _tile2;
+	GXTexObj _bush;
+	GXTexObj _deadbush;
+	GXTexObj _skeleton;
+
 	TPL_OpenTPLFromMemory(&texturesTPL, (void *)textures_tpl, textures_tpl_size);
 	TPL_GetTexture(&texturesTPL, background, &_background);
 	TPL_GetTexture(&texturesTPL, tiletwo, &_tile2);
+	TPL_GetTexture(&texturesTPL, bush, &_bush);
+	TPL_GetTexture(&texturesTPL, deadbush, &_deadbush);
+	TPL_GetTexture(&texturesTPL, skeleton, &_skeleton);
 	textures.push_back(_background);
 	textures.push_back(_tile2);
+	textures.push_back(_bush);
+	textures.push_back(_deadbush);
+	textures.push_back(_skeleton);
+
+
+	// Scene Objects
+	sceneObjects.push_back(new SceneObject(1,0.75f,0,0.5f,0.5f,0, textures[2]));
+	sceneObjects.push_back(new SceneObject(4,0.75f,0,0.5f,0.5f,0, textures[3]));
+	sceneObjects.push_back(new SceneObject(5,0.75f,0,0.5f,0.5f,0, textures[4]));
+	
 
 	platforms.push_back(new Platform(0, 0, 0, 1, 1, 0, textures[1]));
 	platforms.push_back(new Platform(1, 0, 0, 1, 1, 0, textures[1]));
@@ -51,6 +68,11 @@ void Game1::Draw() {
 		platforms[i]->Draw(*camera->GetView());
 	}
 	
+	i = 0;
+	for(i = 0; i < (int)sceneObjects.size(); i++) {
+		sceneObjects[i]->Draw(*camera->GetView());
+	}
+
 	Game::Draw();
 }
 

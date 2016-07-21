@@ -1,2 +1,6 @@
 <filepath="BG.png" id="background" colfmt=6 />
 <filepath="Tile_2.png" id="tiletwo" colfmt=6 />
+<filepath="Bush_2.png" id="bush" colfmt=6 />
+<filepath="DeadBush.png" id="deadbush" colfmt=6 />
+<filepath="Skeleton.png" id="skeleton" colfmt=6 />
+
